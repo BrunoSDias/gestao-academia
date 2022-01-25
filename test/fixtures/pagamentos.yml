@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente: one
+  prazo: 2022-01-24 21:25:44
+  status: 1
+
+two:
+  cliente: two
+  prazo: 2022-01-24 21:25:44
+  status: 1

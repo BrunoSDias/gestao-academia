@@ -1,0 +1,38 @@
+<div class="page-header">
+  <%= link_to enderecos_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Voltar
+  <% end %>
+  <%= link_to edit_endereco_path(@endereco), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Editar
+  <% end %>
+  <h1>Mostrar endereco</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Cliente:</dt>
+  <dd><%= @endereco.cliente %></dd>
+
+  <dt>Rua:</dt>
+  <dd><%= @endereco.rua %></dd>
+
+  <dt>Estado:</dt>
+  <dd><%= @endereco.estado %></dd>
+
+  <dt>Cep:</dt>
+  <dd><%= @endereco.cep %></dd>
+
+  <dt>Cidade:</dt>
+  <dd><%= @endereco.cidade %></dd>
+
+  <dt>Complemento:</dt>
+  <dd><%= @endereco.complemento %></dd>
+
+  <dt>Numero:</dt>
+  <dd><%= @endereco.numero %></dd>
+
+  <dt>Bairro:</dt>
+  <dd><%= @endereco.bairro %></dd>
+
+</dl>

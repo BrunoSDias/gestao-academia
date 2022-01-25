@@ -1,0 +1,33 @@
+<div class="page-header">
+  <%= link_to new_treino_cliente_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Novo Treino cliente
+  <% end %>
+  <h1>Lista de treino_clientes</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Cliente</th>
+            <th>Treino</th>
+            <th>Dia semana</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @treino_clientes) do |treino_cliente| %>
+            <td><%= treino_cliente.cliente %></td>
+            <td><%= treino_cliente.treino %></td>
+            <td><%= treino_cliente.dia_semana %></td>
+            <td><%= link_to 'Mostrar', treino_cliente %></td>
+        <td><%= link_to 'Editar', edit_treino_cliente_path(treino_cliente) %></td>
+        <td><%= link_to 'Remover', treino_cliente, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

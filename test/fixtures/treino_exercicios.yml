@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  treino: one
+  exercicio: one
+
+two:
+  treino: two
+  exercicio: two

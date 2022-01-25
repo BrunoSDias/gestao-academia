@@ -1,0 +1,29 @@
+<div class="page-header">
+  <%= link_to new_treino_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Novo Treino
+  <% end %>
+  <h1>Lista de treinos</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Nome</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @treinos) do |treino| %>
+            <td><%= treino.nome %></td>
+            <td><%= link_to 'Mostrar', treino %></td>
+        <td><%= link_to 'Editar', edit_treino_path(treino) %></td>
+        <td><%= link_to 'Remover', treino, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

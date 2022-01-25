@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to exercicios_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Voltar
+  <% end %>
+  <%= link_to edit_exercicio_path(@exercicio), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Editar
+  <% end %>
+  <h1>Mostrar exercicio</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Treino:</dt>
+  <dd><%= @exercicio.treino %></dd>
+
+  <dt>Nome:</dt>
+  <dd><%= @exercicio.nome %></dd>
+
+  <dt>Descricao:</dt>
+  <dd><%= @exercicio.descricao %></dd>
+
+</dl>

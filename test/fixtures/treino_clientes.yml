@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente: one
+  treino: one
+  dia_semana: 1
+
+two:
+  cliente: two
+  treino: two
+  dia_semana: 1
