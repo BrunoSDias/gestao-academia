@@ -1,0 +1,2 @@
+module Operador::ApplicationHelper
+end

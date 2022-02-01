@@ -1,0 +1,20 @@
+<div class="page-header">
+  <%= link_to clientes_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Voltar
+  <% end %>
+  <%= link_to edit_cliente_path(@cliente), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Editar
+  <% end %>
+  <h1>Mostrar cliente</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Nome:</dt>
+  <dd><%= @cliente.nome %></dd>
+
+  <dt>Whatsapp:</dt>
+  <dd><%= @cliente.whatsapp %></dd>
+
+</dl>

@@ -1,0 +1,2 @@
+module Administrador::PagamentosHelper
+end

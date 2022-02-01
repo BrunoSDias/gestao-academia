@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to treino_clientes_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Voltar
+  <% end %>
+  <%= link_to edit_treino_cliente_path(@treino_cliente), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Editar
+  <% end %>
+  <h1>Mostrar treino_cliente</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Cliente:</dt>
+  <dd><%= @treino_cliente.cliente %></dd>
+
+  <dt>Treino:</dt>
+  <dd><%= @treino_cliente.treino %></dd>
+
+  <dt>Dia semana:</dt>
+  <dd><%= @treino_cliente.dia_semana %></dd>
+
+</dl>

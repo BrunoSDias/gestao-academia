@@ -1,0 +1,23 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first" style="margin-bottom: 15px;">
+      <img src="https://craceara.org.br/images/clube-de-vantagens/ico/cv-academia-bem-estar.jpg" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <%= form_for :administrador, url: :login_administradors, html: { style: "display: flex; flex-direction: column; align-items: center;"} do |f| %>
+      <%= f.text_field :email, placeholder: "Email" %>
+      <%= f.password_field :password, placeholder: "Senha" %>
+      <% if cookies[:qnt_tentativas].to_i >= 3 %>
+        <div style="padding: 10px 0;">
+          <%= recaptcha_tags %>
+        <div>
+      <% end %>
+      <%= f.submit "Entrar" %>
+    <% end %>
+
+  </div>
+</div>

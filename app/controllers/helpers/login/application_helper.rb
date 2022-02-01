@@ -1,0 +1,2 @@
+module Login::ApplicationHelper
+end
