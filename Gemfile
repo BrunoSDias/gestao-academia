@@ -27,6 +27,8 @@ gem 'record_tag_helper', '~> 1.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
+gem 'jquery-rails'
+gem 'jquery_mask_rails', '~> 0.1.0'
 gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
