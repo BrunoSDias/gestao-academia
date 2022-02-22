@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :operador do
+    get 'exercicio_treino_clientes/index'
+    get 'exercicio_treino_clientes/altera_ordem'
+  end
   root to: "login/home#index"
   namespace :administrador do
     root to: 'home#index'
@@ -28,14 +32,20 @@ Rails.application.routes.draw do
   namespace :operador do
     root to: 'home#index'
 
-    resources :clientes
+    post '/pagar', to: 'home#pagar'
+    resources :clientes do
+      resources :enderecos
+      resources :treino_clientes do
+        resources :exercicio_treino_clientes, only: %i[ index ]
+        patch '/exercicio_treino_clientes/:id/altera_ordem', to: "exercicio_treino_clientes#altera_ordem"
+      end
+    end
     resources :exercicios
     resources :operadors, only: %i[show edit update]
     get '/pagamentos', to: 'pagamentos#index'
     resources :treinos
     resources :treinadors do
       resources :treino_treinadors
-      resources :treino_clientes
     end
   end
 

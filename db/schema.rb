@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_25_002628) do
+ActiveRecord::Schema.define(version: 2022_02_15_001959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "clientes", force: :cascade do |t|
     t.string "nome"
-    t.integer "whatsapp"
+    t.bigint "whatsapp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 2022_01_25_002628) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cliente_id"], name: "index_enderecos_on_cliente_id"
+  end
+
+  create_table "exercicio_treino_clientes", force: :cascade do |t|
+    t.bigint "treino_cliente_id"
+    t.bigint "exercicio_id"
+    t.integer "ordem"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercicio_id"], name: "index_exercicio_treino_clientes_on_exercicio_id"
+    t.index ["treino_cliente_id"], name: "index_exercicio_treino_clientes_on_treino_cliente_id"
   end
 
   create_table "exercicios", force: :cascade do |t|
@@ -108,6 +118,8 @@ ActiveRecord::Schema.define(version: 2022_01_25_002628) do
   end
 
   add_foreign_key "enderecos", "clientes"
+  add_foreign_key "exercicio_treino_clientes", "exercicios"
+  add_foreign_key "exercicio_treino_clientes", "treino_clientes"
   add_foreign_key "exercicios", "treinos"
   add_foreign_key "pagamentos", "clientes"
   add_foreign_key "treino_clientes", "clientes"

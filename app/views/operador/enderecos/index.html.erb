@@ -1,0 +1,41 @@
+<div class="page-header">
+  <%= link_to new_operador_cliente_endereco_path(@cliente), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Novo Endereço
+  <% end %>
+  <h1>Lista de Endereços - <%= @cliente.nome %></h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Rua</th>
+        <th>Cep</th>
+        <th>Estado</th>
+        <th>Cidade</th>
+        <th>Complemento</th>
+        <th>Numero</th>
+        <th>Bairro</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @enderecos) do |endereco| %>
+        <td><%= endereco.rua %> </td>
+        <td><%= endereco.cep %> </td>
+        <td><%= endereco.estado %> </td>
+        <td><%= endereco.cidade %> </td>
+        <td><%= endereco.complemento %> </td>
+        <td><%= endereco.numero %> </td>
+        <td><%= endereco.bairro %> </td>
+        <td><%= link_to 'Mostrar', operador_cliente_endereco_path(@cliente, endereco) %></td>
+        <td><%= link_to 'Editar', edit_operador_cliente_endereco_path(@cliente, endereco) %></td>
+        <td><%= link_to 'Remover', operador_cliente_endereco_path(@cliente, endereco), method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

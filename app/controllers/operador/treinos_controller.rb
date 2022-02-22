@@ -25,7 +25,7 @@ class Operador::TreinosController < Operador::ApplicationController
 
     respond_to do |format|
       if @treino.save
-        format.html { redirect_to treino_url(@treino), notice: "Treino was successfully created." }
+        format.html { redirect_to operador_treino_url(@treino), notice: "Treino was successfully created." }
         format.json { render :show, status: :created, location: @treino }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class Operador::TreinosController < Operador::ApplicationController
   def update
     respond_to do |format|
       if @treino.update(treino_params)
-        format.html { redirect_to treino_url(@treino), notice: "Treino was successfully updated." }
+        format.html { redirect_to operador_treino_url(@treino), notice: "Treino was successfully updated." }
         format.json { render :show, status: :ok, location: @treino }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class Operador::TreinosController < Operador::ApplicationController
     @treino.destroy
 
     respond_to do |format|
-      format.html { redirect_to treinos_url, notice: "Treino was successfully destroyed." }
+      format.html { redirect_to operador_treinos_url, notice: "Treino was successfully destroyed." }
       format.json { head :no_content }
     end
   end

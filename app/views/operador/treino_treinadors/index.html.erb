@@ -1,4 +1,31 @@
 <div class="page-header">
-  <h1>TreinoTreinadors#index</h1>
+  <%= link_to new_operador_treinador_treino_treinador_path(@treinador), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    Novo Treino
+  <% end %>
+  <h1>Treinos - <%= @treinador.nome %> </h1>
 </div>
-<p>Find me in app/views/treino_treinadors/index.html.erb</p>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Treinador</th>
+        <th>Treino</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @treino_treinadors) do |treino_treinador| %>
+        <td><%= link_to treino_treinador.nome_treinador, operador_treino_path(treino_treinador.treino_id) %></td>
+        <td><%= link_to treino_treinador.nome_treino, operador_treinador_path(treino_treinador.treinador_id) %></td>
+        <td><%= link_to 'Mostrar', operador_treinador_treino_treinador_path(@treinador, treino_treinador) %></td>
+        <td><%= link_to 'Editar', edit_operador_treinador_treino_treinador_path(@treinador, treino_treinador) %></td>
+        <td><%= link_to 'Remover', operador_treinador_treino_treinador_path(@treinador, treino_treinador), method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

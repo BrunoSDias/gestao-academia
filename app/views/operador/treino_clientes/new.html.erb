@@ -1,9 +1,9 @@
 <div class="page-header">
-  <%= link_to treino_clientes_path, class: 'btn btn-default' do %>
+  <%= link_to operador_cliente_treino_clientes_path(@cliente), class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Voltar
   <% end %>
-  <h1>Novo treino_cliente</h1>
+  <h1>Novo Treino - <%= @cliente.nome %></h1>
 </div>
 
 <%= render 'form' %>

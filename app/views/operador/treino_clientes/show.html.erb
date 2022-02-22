@@ -1,23 +1,23 @@
 <div class="page-header">
-  <%= link_to treino_clientes_path, class: 'btn btn-default' do %>
+  <%= link_to operador_cliente_treino_clientes_path(@cliente), class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Voltar
   <% end %>
-  <%= link_to edit_treino_cliente_path(@treino_cliente), class: 'btn btn-primary' do %>
+  <%= link_to edit_operador_cliente_treino_cliente_path(@cliente, @treino_cliente), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Editar
   <% end %>
-  <h1>Mostrar treino_cliente</h1>
+  <h1>Mostrar Treino - <%= @cliente.nome %></h1>
 </div>
 
 <dl class="dl-horizontal">
   <dt>Cliente:</dt>
-  <dd><%= @treino_cliente.cliente %></dd>
-
+  <dd><%= link_to @treino_cliente.cliente.nome, operador_cliente_path(@treino_cliente.cliente_id)%></dd>
   <dt>Treino:</dt>
-  <dd><%= @treino_cliente.treino %></dd>
-
-  <dt>Dia semana:</dt>
-  <dd><%= @treino_cliente.dia_semana %></dd>
-
+  <dd><%= link_to @treino_cliente.treino.nome, operador_treino_path(@treino_cliente.treino_id)%></dd>
 </dl>
+
+<%= link_to operador_cliente_treino_cliente_exercicio_treino_clientes_path(@cliente, @treino_cliente), class: 'btn btn-primary' do %>
+  <span class="glyphicon glyphicon-list"></span>
+  Sequência de Exercicios
+<% end %>

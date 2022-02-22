@@ -28,3 +28,4 @@ spOptions = {
 };
 
 $('.cel').mask(SPMaskBehavior, spOptions);
+$('.cep').mask('00000-000');

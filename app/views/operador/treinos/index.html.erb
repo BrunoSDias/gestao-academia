@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to new_treino_path, class: 'btn btn-primary' do %>
+  <%= link_to new_operador_treino_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
     Novo Treino
   <% end %>
@@ -19,10 +19,10 @@
 
     <tbody>
       <%= content_tag_for(:tr, @treinos) do |treino| %>
-            <td><%= treino.nome %></td>
-            <td><%= link_to 'Mostrar', treino %></td>
-        <td><%= link_to 'Editar', edit_treino_path(treino) %></td>
-        <td><%= link_to 'Remover', treino, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <td><%= treino.nome %></td>
+        <td><%= link_to 'Mostrar', operador_treino_path(treino) %></td>
+        <td><%= link_to 'Editar', edit_operador_treino_path(treino) %></td>
+        <td><%= link_to 'Remover', operador_treino_path(treino), method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
       <% end %>
     </tbody>
   </table>

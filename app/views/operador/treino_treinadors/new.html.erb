@@ -1,0 +1,9 @@
+<div class="page-header">
+  <%= link_to operador_treinador_treino_treinadors_path(@treinador), class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Voltar
+  <% end %>
+  <h1>Novo Treino - <%= @treinador.nome %></h1>
+</div>
+
+<%= render 'form' %>

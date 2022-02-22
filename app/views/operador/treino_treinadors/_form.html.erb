@@ -1,0 +1,32 @@
+<%= form_for([@treinador, @treino_treinador], url: @treino_treinador.id ? operador_treinador_treino_treinador_path(@treinador, @treino_treinador) : operador_treinador_treino_treinadors_path(@treinador,@treino_treinador), html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @treino_treinador.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+      <h4><%= pluralize(@treino_treinador.errors.count, "error") %> impediram esta  treino_treinador de ser salva:</h4>
+
+      <ul>
+      <% @treino_treinador.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :treino_id, "Treino", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.select :treino_id, Treino.all.collect{ |treino| [treino.nome, treino.id] }, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :treinador_id, "Treinador", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.select :treinador_id, Treinador.all.collect{ |treinador| [treinador.nome, treinador.id] }, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

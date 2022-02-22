@@ -1,1 +1,36 @@
-<h1>Bem vindo Administrador <%= @current_user.nome %></h1>
+<h1 style="margin-bottom: 15px;">Bem vindo Administrador <%= @current_user.nome %></h1>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <tbody>
+      <% @pagamentos.each do |pagamento| %>
+        <tr id="pagamento_<%= pagamento.id %>" style="background: #d84040; color: #ffffff">
+          <td>
+            <p>ID</p>
+            <%= pagamento.id %>
+          </td>
+          <td>
+            <p>Validade</p>
+            <%= pagamento.prazo.strftime("%d/%M/%Y %H:%M") %>
+          </td>
+          <td>
+            <p>Cliente</p>
+            <%= link_to pagamento.nome, operador_cliente_path(pagamento.cliente_id), style: "color: #ffffff" %>
+          </td>
+          <td>
+            <p>Telefone Cliente</p>
+            <%= pagamento.whatsapp %>
+          </td>
+          <td>
+            <%= button_to 'Pagar',
+              { action: :pagar },
+              params: { id: pagamento.id },
+              method: :post,
+              remote: true,
+              data: { confirm: "Confirmar pagamento realizado?" }
+            %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

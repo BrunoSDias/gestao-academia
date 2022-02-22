@@ -1,9 +1,9 @@
 <div class="page-header">
-  <%= link_to treinadors_path, class: 'btn btn-default' do %>
+  <%= link_to operador_treinadors_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Voltar
   <% end %>
-  <%= link_to edit_treinador_path(@treinador), class: 'btn btn-primary' do %>
+  <%= link_to edit_operador_treinador_path(@treinador), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Editar
   <% end %>
@@ -18,3 +18,9 @@
   <dd><%= @treinador.email %></dd>
 
 </dl>
+<hr>
+
+<%= link_to operador_treinador_treino_treinadors_path(@treinador), class: 'btn btn-primary' do %>
+  <span class="glyphicon glyphicon-list"></span>
+  Treinos
+<% end %>

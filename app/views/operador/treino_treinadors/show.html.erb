@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to operador_treinador_treino_treinadors_path(@treinador), class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Voltar
+  <% end %>
+  <%= link_to edit_operador_treinador_treino_treinador_path(@treinador, @treino_treinador), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Editar
+  <% end %>
+  <h1>Mostrar Treino - <%= @treinador.nome %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Treinador:</dt>
+  <dd><%= link_to @treino_treinador.treinador.nome, operador_treinador_path(@treino_treinador.treinador_id)%></dd>
+  <dt>Treino:</dt>
+  <dd><%= link_to @treino_treinador.treino.nome, operador_treino_path(@treino_treinador.treino_id)%></dd>
+</dl>

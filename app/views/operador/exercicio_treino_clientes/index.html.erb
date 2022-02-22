@@ -1,0 +1,46 @@
+<div class="page-header">
+  <%= link_to operador_cliente_treino_clientes_path(@cliente_id), class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-back"></span>
+    Voltar
+  <% end %>
+  <h1>Sequência de exercícios</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Exercicio</th>
+        <th>Ordem</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @exercicio_treino_clientes) do |exercicio_treino_cliente| %>
+        <td><%= link_to exercicio_treino_cliente.nome_exercicio, operador_exercicios_path(exercicio_treino_cliente.exercicio_id) %></td>
+        <td><input type="number" name="ordem" value="<%= exercicio_treino_cliente.ordem %>" onkeypress="alteraOrdem(this, event, <%= exercicio_treino_cliente.id %>, <%= exercicio_treino_cliente.cliente_id %>, <%= exercicio_treino_cliente.treino_cliente_id %>)"></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  function alteraOrdem(el, e, id, cliente_id, treino_cliente_id) {
+    if (e.keyCode == 13 || e.which == 13) {
+      const url = `/operador/clientes/${cliente_id}/treino_clientes/${treino_cliente_id}/exercicio_treino_clientes/${id}/altera_ordem`;
+
+      $.ajax({
+        method: 'PATCH',
+        url: url,
+        data: ({ ordem: el.value })
+      })
+      .done(() => {
+        window.alert("Ordem alterada com sucesso!");
+      })
+      .fail((res) => {
+        el.value = null;
+        window.alert(res.responseJSON.message);
+      })
+    }
+  }
+</script>

@@ -3,7 +3,15 @@ class Operador::ExerciciosController < Operador::ApplicationController
 
   # GET /exercicios or /exercicios.json
   def index
-    @exercicios = Exercicio.all
+    @exercicios = Exercicio
+    .joins(:treino)
+    .select([
+      "exercicios.id",
+      "exercicios.treino_id",
+      "exercicios.nome",
+      "exercicios.descricao",
+      "treinos.nome as nome_treino"
+    ])
   end
 
   # GET /exercicios/1 or /exercicios/1.json
@@ -25,7 +33,7 @@ class Operador::ExerciciosController < Operador::ApplicationController
 
     respond_to do |format|
       if @exercicio.save
-        format.html { redirect_to exercicio_url(@exercicio), notice: "Exercicio was successfully created." }
+        format.html { redirect_to operador_exercicio_url(@exercicio), notice: "Exercicio was successfully created." }
         format.json { render :show, status: :created, location: @exercicio }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +46,7 @@ class Operador::ExerciciosController < Operador::ApplicationController
   def update
     respond_to do |format|
       if @exercicio.update(exercicio_params)
-        format.html { redirect_to exercicio_url(@exercicio), notice: "Exercicio was successfully updated." }
+        format.html { redirect_to operador_exercicio_url(@exercicio), notice: "Exercicio was successfully updated." }
         format.json { render :show, status: :ok, location: @exercicio }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +60,7 @@ class Operador::ExerciciosController < Operador::ApplicationController
     @exercicio.destroy
 
     respond_to do |format|
-      format.html { redirect_to exercicios_url, notice: "Exercicio was successfully destroyed." }
+      format.html { redirect_to operador_exercicios_url, notice: "Exercicio was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  treino_cliente: 
+  exercicio: one
+  ordem: 1
+
+two:
+  treino_cliente: 
+  exercicio: two
+  ordem: 1

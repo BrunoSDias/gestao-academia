@@ -1,0 +1,9 @@
+<div class="page-header">
+  <%= link_to operador_cliente_enderecos_path(@cliente), class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Voltar
+  <% end %>
+  <h1>Novo Endereço - <%= @cliente.nome %></h1>
+</div>
+
+<%= render 'form' %>

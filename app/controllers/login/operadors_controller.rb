@@ -3,7 +3,7 @@ class Login::OperadorsController < Login::ApplicationController
   end
 
   def access
-    operador = Operador.find_by(email: set_operador_params[:email], operador: false)
+    operador = Operador.find_by(email: set_operador_params[:email], administrador: false)
 
     if operador && 
       (cookies[:qnt_tentativas].to_i < 3 || verify_recaptcha({message: "Você não preencheu o recaptcha"})) &&

@@ -1,4 +1,4 @@
-<%= form_for(@treino_cliente, html: { class: "form-horizontal", role: "form" }) do |f| %>
+<%= form_for([@cliente, @treino_cliente], url: @treino_cliente.id ? operador_cliente_treino_cliente_path(@cliente, @treino_cliente) : operador_cliente_treino_clientes_path(@cliente,@treino_cliente), html: { class: "form-horizontal", role: "form" }) do |f| %>
   <% if @treino_cliente.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
@@ -13,21 +13,21 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :cliente, class: "col-sm-2 control-label" %>
+    <%= f.label :treino_id, "Treino", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :cliente, class: "form-control" %>
+      <%= f.select :treino_id, Treino.all.collect{ |treino| [treino.nome, treino.id] }, class: "form-control" %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :treino, class: "col-sm-2 control-label" %>
+    <%= f.label :cliente_id, "Cliente", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :treino, class: "form-control" %>
+      <%= f.select :cliente_id, Cliente.all.collect{ |cliente| [cliente.nome, cliente.id] }, class: "form-control" %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :dia_semana, class: "col-sm-2 control-label" %>
+    <%= f.label :dia_semana, "Dia da Semana", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.number_field :dia_semana, class: "form-control" %>
+      <%= f.select :dia_semana, TreinoCliente.dia_semanas.map{ |key, val| [key, key] }, class: "form-control" %>
     </div>
   </div>
   <div class="form-group">
