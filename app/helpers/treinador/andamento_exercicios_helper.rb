@@ -1,0 +1,2 @@
+module Treinador::AndamentoExerciciosHelper
+end

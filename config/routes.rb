@@ -53,6 +53,10 @@ Rails.application.routes.draw do
     root to: 'home#index'
 
     resources :treinadors, only: %i[show]
-    resources :treino_clientes, only: %i[index]
+    resources :clientes do
+      resources :treino_clientes, only: %i[index] do
+        resources :andamento_exercicios, only: %i[index]
+      end
+    end
   end
 end

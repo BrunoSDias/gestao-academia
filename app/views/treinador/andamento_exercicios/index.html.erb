@@ -1,0 +1,12 @@
+<h4 style="text-align: center;">Exercícios</h4>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover"  style="text-align: center;">
+    <tbody>
+      <%= content_tag_for(:tr, @andamento_exercicios) do |andamento_exercicio| %>
+        <td>
+          <span><%= andamento_exercicio.nome %></span>
+        </td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

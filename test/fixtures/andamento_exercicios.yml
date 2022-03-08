@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  exercicio_treino_cliente: one
+  status: 1
+  mensagem: MyString
+
+two:
+  exercicio_treino_cliente: two
+  status: 1
+  mensagem: MyString

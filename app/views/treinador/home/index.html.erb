@@ -1,0 +1,12 @@
+<h4 style='text-align: center;'>Clientes</h4>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover" style="text-align: center;">
+    <tbody>
+      <%= content_tag_for(:tr, @clientes) do |cliente| %>
+        <td>
+          <%= link_to cliente.nome, treinador_cliente_treino_clientes_path(cliente.id) %>
+        </td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

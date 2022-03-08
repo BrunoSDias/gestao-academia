@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_15_001959) do
+ActiveRecord::Schema.define(version: 2022_03_08_005533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "andamento_exercicios", force: :cascade do |t|
+    t.bigint "exercicio_treino_cliente_id"
+    t.integer "status"
+    t.string "mensagem"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercicio_treino_cliente_id"], name: "index_andamento_exercicios_on_exercicio_treino_cliente_id"
+  end
 
   create_table "clientes", force: :cascade do |t|
     t.string "nome"
@@ -117,6 +126,7 @@ ActiveRecord::Schema.define(version: 2022_02_15_001959) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "andamento_exercicios", "exercicio_treino_clientes"
   add_foreign_key "enderecos", "clientes"
   add_foreign_key "exercicio_treino_clientes", "exercicios"
   add_foreign_key "exercicio_treino_clientes", "treino_clientes"
