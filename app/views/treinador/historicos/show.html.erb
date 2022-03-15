@@ -1,0 +1,32 @@
+<%= link_to treinador_historicos_path, class: 'btn btn-default', style: 'position: absolute; left: 10px; top: 60px;' do %>
+  <span class="glyphicon glyphicon-list-alt"></span>
+  Voltar
+<% end %>
+
+<h4 style="text-align: center;">Histórico de <%= @cliente.nome %></h4>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover"  style="text-align: center;">
+    <thead>
+      <tr>
+        <th>Treino</th>
+        <th>Exercicio</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @andamento_exercicios.each do |andamento_exercicio| %>
+        <tr <%= verifica_estilo_por_status(andamento_exercicio) %>>
+          <td>
+            <%= andamento_exercicio.nome_treino %>
+          </td>
+          <td>
+            <%= andamento_exercicio.nome_exercicio %>
+          </td>
+          <td>
+            <%= andamento_exercicio.created_at.strftime("%d/%M/%Y") %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

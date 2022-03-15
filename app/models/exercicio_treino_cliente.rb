@@ -2,6 +2,8 @@ class ExercicioTreinoCliente < ApplicationRecord
   belongs_to :treino_cliente
   belongs_to :exercicio
 
+  has_many :andamento_exercicios, dependent: :destroy
+
   validate :ordem_unica?
 
   private

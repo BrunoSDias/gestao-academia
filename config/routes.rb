@@ -51,11 +51,14 @@ Rails.application.routes.draw do
 
   namespace :treinador do
     root to: 'home#index'
+    resources :historicos, only: %i[ index show]
 
     resources :treinadors, only: %i[show]
     resources :clientes do
       resources :treino_clientes, only: %i[index] do
-        resources :andamento_exercicios, only: %i[index]
+        resources :andamento_exercicios, only: %i[index] do
+          patch '/update_status', to: 'andamento_exercicios#update_status'
+        end
       end
     end
   end

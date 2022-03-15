@@ -1,12 +1,76 @@
-<h4 style="text-align: center;">Exercícios</h4>
-<div class="table-responsive">
-  <table class="table table-bordered table-hover"  style="text-align: center;">
-    <tbody>
-      <%= content_tag_for(:tr, @andamento_exercicios) do |andamento_exercicio| %>
+<%= link_to treinador_cliente_treino_clientes_path(@treino_cliente.cliente_id), class: 'btn btn-default', style: 'position: absolute; left: 10px; top: 60px;' do %>
+  <span class="glyphicon glyphicon-list-alt"></span>
+  Voltar
+<% end %>
+<h4 style="text-align: center; margin-top: 20px;">Andamento de Exercícios</h4>
+<div>
+  <dl class="dl-horizontal" style="
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    max-width: 250px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  ">
+    <dt>Em andamento:</dt>
+    <dd style='width: 50px; height: 50px; background-color: yellow'></dd>
+    <dt>Realizado:</dt>
+    <dd style='width: 50px; height: 50px; background-color: #8bf96a'></dd>
+    <dt>Não Realizado:</dt>
+    <dd style='width: 50px; height: 50px; background-color: #ff9595'></dd>
+  </dl>
+<div>
+<table class="table table-bordered table-hover"  style="text-align: center;">
+  <tbody>
+      <% @andamento_exercicios.each do |andamento_exercicio| %>
+      <tr id="andamento-<%= andamento_exercicio.id %>" <%= verifica_estilo_por_status(andamento_exercicio) %>>
         <td>
           <span><%= andamento_exercicio.nome %></span>
         </td>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+        <td class='hover' style='color: red;' onclick='updateStatus(0, <%= andamento_exercicio.id %>)'>
+          <span>Falhou</span>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </td>
+        <td class='hover' style='color: green;' onclick='updateStatus(2, <%= andamento_exercicio.id %> )'>
+          <span>Concluido</span>
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </td>
+        <td data-toggle="collapse" data-target="#detalhes-<%= andamento_exercicio.id %>">
+          <span>Detalhes</span>
+          <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        </td>
+      </tr>
+      <tr id="detalhes-<%= andamento_exercicio.id %>" class="collapse">
+        <td colspan='4'>
+          <p><%= andamento_exercicio.descricao %></p>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script>
+  function updateStatus(status, id) {
+    const confirmado = confirm(status == 2 ? "Concluir andamento de exercicio?" : "Exercicio realmente não foi realizado?")
+    if (!confirmado) return;
+
+    const url = `/treinador/clientes/<%= @treino_cliente.cliente_id %>/treino_clientes/<%= @treino_cliente.id %>/andamento_exercicios/${id}/update_status`;
+
+    $.ajax({
+      method: 'PATCH',
+      url: url,
+      data: ({ status })
+    })
+    .done(() => {
+      if (status == 0) {
+        document.getElementById("andamento-" + id).style.backgroundColor = "#ff9595";
+      }
+      else if (status == 2) {
+        document.getElementById("andamento-" + id).style.backgroundColor = "#8bf96a";
+      }
+    })
+    .fail((res) => {
+      console.log(res);
+    })
+  }
+</script>

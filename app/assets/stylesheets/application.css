@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+ .hover:hover {
+  background-color: #ccc;
+ }

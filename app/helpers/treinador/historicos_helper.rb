@@ -1,0 +1,2 @@
+module Treinador::HistoricosHelper
+end
