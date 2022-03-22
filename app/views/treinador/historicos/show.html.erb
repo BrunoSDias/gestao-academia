@@ -2,6 +2,32 @@
   <span class="glyphicon glyphicon-list-alt"></span>
   Voltar
 <% end %>
+<%= render 'treinador/shared/legenda' %>
+<form style='padding: 10px; border: 1px solid #ccc; margin: 40px 0;'>
+<dl class="dl-horizontal">
+  <dt>Treino:</dt>
+  <dd><%= select_tag :treino_id, options_from_collection_for_select(@treinos, "id", "nome", params[:treino_id]), include_blank: "::: Selecione ::: " %></dd>
+  <dt>Exercicio:</dt>
+  <dd><%= select_tag :exercicio_id, options_from_collection_for_select(@exercicios, "id", "nome", params[:exercicio_id]), include_blank: "::: Selecione ::: " %></dd>
+  <dt>Status:</dt>
+  <dd><%= select_tag :status, options_for_select(AndamentoExercicio.statuses.to_a, params[:status]), include_blank: "::: Selecione ::: " %></dd>
+  <dt>Dia da semana:</dt>
+  <dd><%= select_tag :dia_semana, options_for_select(TreinoCliente.dia_semanas.to_a, params[:dia_semana]), include_blank: "::: Selecione ::: ", max: Time.zone.now.strftime("%Y
+  /%m/%d") %></dd>
+  <dt>Data:</dt>
+  <dd style='max-width: 645px;'>
+    <div class='col-sm-6'>
+      <%= date_field_tag :data_de, params[:data_de], class: 'form-control' %>
+    </div>
+    <div class='col-sm-6'>
+      <%= date_field_tag :data_ate, params[:data_ate], class: 'form-control' %>
+    </div>
+  </dd>
+</dl>
+<div style="text-align: center; width: 100%;">
+  <%= submit_tag "Buscar" %>
+</div>
+</form>
 
 <h4 style="text-align: center;">Histórico de <%= @cliente.nome %></h4>
 <div class="table-responsive">
@@ -23,10 +49,13 @@
             <%= andamento_exercicio.nome_exercicio %>
           </td>
           <td>
-            <%= andamento_exercicio.created_at.strftime("%d/%M/%Y") %>
+            <%= andamento_exercicio.created_at.strftime("%d/%m/%Y") %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <div class="flickr_pagination">
+    <%= will_paginate @andamento_exercicios %>
+  </div>
 </div>

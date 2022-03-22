@@ -20,7 +20,6 @@ class Login::TreinadorsController < Login::ApplicationController
       render :signin
     end
   end
-
   private
 
   def set_treinador_params

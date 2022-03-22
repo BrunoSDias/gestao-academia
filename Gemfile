@@ -30,6 +30,7 @@ gem 'record_tag_helper', '~> 1.0'
 gem 'jquery-rails'
 gem 'jquery_mask_rails', '~> 0.1.0'
 gem 'bcrypt', '~> 3.1.7'
+gem 'will_paginate', '~> 3.3'
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'

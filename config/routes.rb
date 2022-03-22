@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   namespace :login do
     root to: 'home#index'
+    get '/signout', to: "application#signout"
     
     get '/administradors', to: 'administradors#signin'
     post '/administradors', to: 'administradors#access'
