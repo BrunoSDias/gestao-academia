@@ -1,9 +1,9 @@
 <div class="page-header">
-  <%= link_to treinadors_path, class: 'btn btn-default' do %>
+  <%= link_to administrador_treinadors_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Voltar
   <% end %>
-  <%= link_to edit_treinador_path(@treinador), class: 'btn btn-primary' do %>
+  <%= link_to edit_administrador_treinador_path(@treinador), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Editar
   <% end %>
@@ -18,3 +18,4 @@
   <dd><%= @treinador.email %></dd>
 
 </dl>
+<hr>

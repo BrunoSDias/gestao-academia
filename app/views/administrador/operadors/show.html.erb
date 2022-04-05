@@ -1,9 +1,9 @@
 <div class="page-header">
-  <%= link_to operadors_path, class: 'btn btn-default' do %>
+  <%= link_to administrador_operadors_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Voltar
   <% end %>
-  <%= link_to edit_operador_path(@operador), class: 'btn btn-primary' do %>
+  <%= link_to edit_administrador_operador_path(@operador), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Editar
   <% end %>
@@ -16,12 +16,6 @@
 
   <dt>Email:</dt>
   <dd><%= @operador.email %></dd>
-
-  <dt>Password:</dt>
-  <dd><%= @operador.password %></dd>
-
-  <dt>Password digest:</dt>
-  <dd><%= @operador.password_digest %></dd>
 
   <dt>Administrador:</dt>
   <dd><%= @operador.administrador %></dd>

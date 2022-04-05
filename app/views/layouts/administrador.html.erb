@@ -27,13 +27,17 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to "Project name", "#", class: "navbar-brand" %>
+        <%= link_to "Gestão Academia", "/administrador", class: "navbar-brand" %>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/admin">Home</a></li>
-          <li><a href="/admin/operadores">Operadores</a></li>
-          <li><a href="/admin/treinadores">Treinadores</a></li>
+          <li <% if params[:controller] == "administrador/home" && params[:action] == "index" %> class="active" <% end %>><a href="/administrador">Home</a></li>
+          <li <% if params[:controller] == "administrador/operadors" && params[:action] == "index" %> class="active" <% end %>><a href="/administrador/operadors">Operadores</a></li>
+          <li <% if params[:controller] == "administrador/treinadors" && params[:action] == "index" %> class="active" <% end %>><a href="/administrador/treinadors">Treinadores</a></li>
+          <li <% if params[:controller] == "administrador/clientes" && params[:action] == "index" %> class="active" <% end %>><a href="/administrador/clientes">Clientes</a></li>
+          <li <% if params[:controller] == "administrador/treinos" && params[:action] == "index" %> class="active" <% end %>><a href="/administrador/treinos">Treinos</a></li>
+          <li <% if params[:controller] == "administrador/exercicios" && params[:action] == "index" %> class="active" <% end %>><a href="/administrador/exercicios">Exercicios</a></li>
+          <li><a href="/login/signout">Sair</a></li>
         </ul>
       </div>
     </div>

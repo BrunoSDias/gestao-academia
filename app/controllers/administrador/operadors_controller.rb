@@ -25,7 +25,7 @@ class Administrador::OperadorsController < Administrador::ApplicationController
 
     respond_to do |format|
       if @operador.save
-        format.html { redirect_to operador_url(@operador), notice: "Operador was successfully created." }
+        format.html { redirect_to administrador_operador_url(@operador), notice: "Operador was successfully created." }
         format.json { render :show, status: :created, location: @operador }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class Administrador::OperadorsController < Administrador::ApplicationController
   def update
     respond_to do |format|
       if @operador.update(operador_params)
-        format.html { redirect_to operador_url(@operador), notice: "Operador was successfully updated." }
+        format.html { redirect_to administrador_operador_url(@operador), notice: "Operador was successfully updated." }
         format.json { render :show, status: :ok, location: @operador }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class Administrador::OperadorsController < Administrador::ApplicationController
     @operador.destroy
 
     respond_to do |format|
-      format.html { redirect_to operadors_url, notice: "Operador was successfully destroyed." }
+      format.html { redirect_to administrador_operadors_url, notice: "Operador was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +65,6 @@ class Administrador::OperadorsController < Administrador::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def operador_params
-      params.require(:operador).permit(:nome, :email, :password, :password_digest, :administrador)
+      params.require(:operador).permit(:nome, :email, :password, :administrador)
     end
 end

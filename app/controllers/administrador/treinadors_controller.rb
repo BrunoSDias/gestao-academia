@@ -1,6 +1,4 @@
 class Administrador::TreinadorsController < Administrador::ApplicationController
-  layout 'treinador'
-
   before_action :set_treinador, only: %i[ show edit update destroy ]
 
   # GET /treinadors or /treinadors.json
@@ -27,7 +25,7 @@ class Administrador::TreinadorsController < Administrador::ApplicationController
 
     respond_to do |format|
       if @treinador.save
-        format.html { redirect_to treinador_url(@treinador), notice: "Treinador was successfully created." }
+        format.html { redirect_to administrador_treinador_url(@treinador), notice: "Treinador was successfully created." }
         format.json { render :show, status: :created, location: @treinador }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +38,7 @@ class Administrador::TreinadorsController < Administrador::ApplicationController
   def update
     respond_to do |format|
       if @treinador.update(treinador_params)
-        format.html { redirect_to treinador_url(@treinador), notice: "Treinador was successfully updated." }
+        format.html { redirect_to administrador_treinador_url(@treinador), notice: "Treinador was successfully updated." }
         format.json { render :show, status: :ok, location: @treinador }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +52,7 @@ class Administrador::TreinadorsController < Administrador::ApplicationController
     @treinador.destroy
 
     respond_to do |format|
-      format.html { redirect_to treinadors_url, notice: "Treinador was successfully destroyed." }
+      format.html { redirect_to administrador_treinadors_url, notice: "Treinador was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -62,8 +60,7 @@ class Administrador::TreinadorsController < Administrador::ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_treinador
-      # @treinador = Treinador.find_decoded(@current_user)
-      @treinador = Treinador.first
+      @treinador = Treinador.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -1,13 +1,13 @@
 <div class="page-header">
-  <%= link_to administrador_operadors_path, class: 'btn btn-default' do %>
+  <%= link_to administrador_treinos_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Voltar
   <% end %>
-  <%= link_to administrador_operador_path(@operador), class: 'btn btn-primary' do %>
+  <%= link_to administrador_treino_path(@treino), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-info-sign"></span>
     Mostrar
   <% end %>
-  <h1>Editar operador</h1>
+  <h1>Editar treino</h1>
 </div>
 
 <%= render 'form' %>

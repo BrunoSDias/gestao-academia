@@ -1,19 +1,16 @@
 Rails.application.routes.draw do
-  namespace :operador do
-    get 'exercicio_treino_clientes/index'
-    get 'exercicio_treino_clientes/altera_ordem'
-  end
   root to: "login/home#index"
   namespace :administrador do
     root to: 'home#index'
 
-    resources :administradors
+    post '/pagar', to: 'home#pagar'
     resources :clientes do
       resources :enderecos
     end
+    resources :exercicios
     resources :operadors
+    resources :treinos
     resources :treinadors
-    get '/pagamentos', to: 'pagamentos#index'
   end
 
   namespace :login do

@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to new_operador_path, class: 'btn btn-primary' do %>
+  <%= link_to new_administrador_operador_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
     Novo Operador
   <% end %>
@@ -10,12 +10,10 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Password digest</th>
-            <th>Administrador</th>
-            <th></th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Administrador</th>
+        <th></th>
         <th></th>
         <th></th>
       </tr>
@@ -23,14 +21,12 @@
 
     <tbody>
       <%= content_tag_for(:tr, @operadors) do |operador| %>
-            <td><%= operador.nome %></td>
-            <td><%= operador.email %></td>
-            <td><%= operador.password %></td>
-            <td><%= operador.password_digest %></td>
-            <td><%= operador.administrador %></td>
-            <td><%= link_to 'Mostrar', operador %></td>
-        <td><%= link_to 'Editar', edit_operador_path(operador) %></td>
-        <td><%= link_to 'Remover', operador, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        <td><%= operador.nome %></td>
+        <td><%= operador.email %></td>
+        <td><%= operador.administrador %></td>
+        <td><%= link_to 'Mostrar', administrador_operador_path(operador) %></td>
+        <td><%= link_to 'Editar', edit_administrador_operador_path(operador) %></td>
+        <td><%= link_to 'Remover', administrador_operador_path(operador), method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
       <% end %>
     </tbody>
   </table>

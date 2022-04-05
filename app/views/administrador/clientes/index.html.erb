@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to new_cliente_path, class: 'btn btn-primary' do %>
+  <%= link_to new_administrador_cliente_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
     Novo Cliente
   <% end %>
@@ -19,12 +19,15 @@
     </thead>
 
     <tbody>
-      <%= content_tag_for(:tr, @clientes) do |cliente| %>
-            <td><%= cliente.nome %></td>
-            <td><%= cliente.whatsapp %></td>
-            <td><%= link_to 'Mostrar', cliente %></td>
-        <td><%= link_to 'Editar', edit_cliente_path(cliente) %></td>
-        <td><%= link_to 'Remover', cliente, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      <% data_atual = Time.zone.now %>
+      <% @clientes.each do |cliente| %>
+        <tr <% if cliente.prazo < data_atual %> style="border: 3px solid red" <% end %>>
+          <td><%= cliente.nome %></td>
+          <td><%= cliente.whatsapp %></td>
+          <td><%= link_to 'Mostrar', administrador_cliente_path(cliente) %></td>
+          <td><%= link_to 'Editar', edit_administrador_cliente_path(cliente) %></td>
+          <td><%= link_to 'Remover', administrador_cliente_path(cliente), method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>

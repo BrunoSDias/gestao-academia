@@ -1,4 +1,4 @@
-<%= form_for(@endereco, html: { class: "form-horizontal", role: "form" }) do |f| %>
+<%= form_for([@cliente, @endereco], url: @endereco.id ? administrador_cliente_endereco_path(@cliente, @endereco) : administrador_cliente_enderecos_path(@cliente,@endereco), html: { class: "form-horizontal", role: "form" }) do |f| %>
   <% if @endereco.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
@@ -13,27 +13,21 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :cliente, class: "col-sm-2 control-label" %>
+    <%= f.label :rua, "Rua", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :cliente, class: "form-control" %>
+      <%= f.text_field :rua, class: "form-control" %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :rua, class: "col-sm-2 control-label" %>
+    <%= f.label :cep, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :rua, class: "form-control" %>
+      <%= f.text_field :cep, class: "form-control cep", onkeypress: "loadCep(this.value)" %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :estado, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
       <%= f.text_field :estado, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :cep, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :cep, class: "form-control" %>
     </div>
   </div>
   <div class="form-group">
@@ -51,7 +45,7 @@
   <div class="form-group">
     <%= f.label :numero, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :numero, class: "form-control" %>
+      <%= f.number_field :numero, class: "form-control" %>
     </div>
   </div>
   <div class="form-group">
@@ -66,3 +60,27 @@
     </div>
   </div>
 <% end %>
+
+<script>
+  function loadCep(cep) {
+    if (cep) {
+      const cepFiltrado = cep.replace(/[^0-9\.]+/g, '');
+      if (cepFiltrado.length == 8) {
+        const url = `https://viacep.com.br/ws/${cepFiltrado}/json/`;
+        $.ajax({
+          method: 'GET',
+          url: url
+        })
+        .done((res) => {
+          document.getElementById("endereco_estado").value = res.uf;
+          document.getElementById("endereco_rua").value = res.logradouro;
+          document.getElementById("endereco_bairro").value = res.bairro;
+          document.getElementById("endereco_cidade").value = res.localidade;
+          document.getElementById("endereco_complemento").value = res.complemento;
+        })
+        .fail((res) => {
+        })
+      }
+    }
+  }
+</script>

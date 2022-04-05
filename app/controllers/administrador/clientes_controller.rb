@@ -3,7 +3,14 @@ class Administrador::ClientesController < Administrador::ApplicationController
 
   # GET /clientes or /clientes.json
   def index
-    @clientes = Cliente.all
+    @clientes = Cliente
+    .joins(:pagamento)
+    .select([
+      "clientes.id",
+      "clientes.nome",
+      "clientes.whatsapp",
+      "pagamentos.prazo"
+    ])
   end
 
   # GET /clientes/1 or /clientes/1.json
@@ -13,6 +20,7 @@ class Administrador::ClientesController < Administrador::ApplicationController
   # GET /clientes/new
   def new
     @cliente = Cliente.new
+    @cliente.build_pagamento
   end
 
   # GET /clientes/1/edit
@@ -22,10 +30,9 @@ class Administrador::ClientesController < Administrador::ApplicationController
   # POST /clientes or /clientes.json
   def create
     @cliente = Cliente.new(cliente_params)
-
     respond_to do |format|
       if @cliente.save
-        format.html { redirect_to cliente_url(@cliente), notice: "Cliente was successfully created." }
+        format.html { redirect_to administrador_cliente_url(@cliente), notice: "Cliente was successfully created." }
         format.json { render :show, status: :created, location: @cliente }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +45,7 @@ class Administrador::ClientesController < Administrador::ApplicationController
   def update
     respond_to do |format|
       if @cliente.update(cliente_params)
-        format.html { redirect_to cliente_url(@cliente), notice: "Cliente was successfully updated." }
+        format.html { redirect_to administrador_cliente_url(@cliente), notice: "Cliente was successfully updated." }
         format.json { render :show, status: :ok, location: @cliente }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +59,7 @@ class Administrador::ClientesController < Administrador::ApplicationController
     @cliente.destroy
 
     respond_to do |format|
-      format.html { redirect_to clientes_url, notice: "Cliente was successfully destroyed." }
+      format.html { redirect_to administrador_clientes_url, notice: "Cliente was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +72,7 @@ class Administrador::ClientesController < Administrador::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cliente_params
-      params.require(:cliente).permit(:nome, :whatsapp)
+      params[:cliente][:whatsapp] = params[:cliente][:whatsapp].gsub(/\D/, '')
+      params.require(:cliente).permit(:nome, :whatsapp, pagamento_attributes: [:id, :prazo])
     end
 end
