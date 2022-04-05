@@ -24,6 +24,8 @@ class TreinoCliente < ApplicationRecord
             dia_semana: self.dia_semana,
           )
           .where.not(id: self.id)
+          .count
+          .positive?
             errors.add(:base, message: "Cliente não pode ter mais de um mesmo treino")
         end
       else
@@ -32,6 +34,8 @@ class TreinoCliente < ApplicationRecord
           treino_id: self.treino_id,
           dia_semana: self.dia_semana
         )
+        .count
+        .positive?
           errors.add(:base, message: "Cliente não pode ter mais de um mesmo treino")
         end
       end
