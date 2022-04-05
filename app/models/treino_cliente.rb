@@ -24,7 +24,7 @@ class TreinoCliente < ApplicationRecord
             dia_semana: self.dia_semana,
           )
           .where.not(id: self.id)
-            base.errors.add(:unico, message: "Cliente não pode ter mais de um mesmo treino")
+            errors.add(:base, message: "Cliente não pode ter mais de um mesmo treino")
         end
       else
         if TreinoCliente.where(
@@ -32,7 +32,7 @@ class TreinoCliente < ApplicationRecord
           treino_id: self.treino_id,
           dia_semana: self.dia_semana
         )
-          base.errors.add(:unico, message: "Cliente não pode ter mais de um mesmo treino")
+          errors.add(:base, message: "Cliente não pode ter mais de um mesmo treino")
         end
       end
     end
