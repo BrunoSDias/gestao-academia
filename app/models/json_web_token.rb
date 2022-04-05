@@ -1,4 +1,4 @@
-SECRET_KEY = Rails.application.secrets.secret_key_base
+SECRET_KEY = ENV['JWT_SECRET']
 
 class JsonWebToken
   def self.encode(dado, exp = 1.year.from_now)
