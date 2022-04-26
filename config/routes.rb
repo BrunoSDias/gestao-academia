@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
     get '/treinadors', to: 'treinadors#signin'
     post '/treinadors', to: 'treinadors#access'
+
+    post '/clientes', to: 'clientes#access'
   end
 
   namespace :operador do
@@ -59,5 +61,9 @@ Rails.application.routes.draw do
         end
       end
     end
+  end
+  namespace :cliente do
+    get '/show_cliente', to: 'clientes#show'
+    resources :clientes, except: :show
   end
 end

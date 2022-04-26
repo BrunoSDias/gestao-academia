@@ -5,4 +5,10 @@ class Cliente < ApplicationRecord
   validates :nome, :whatsapp, presence: true
 
   accepts_nested_attributes_for :pagamento
+
+  def encoded
+    res = self.as_json
+    res['id'] = JsonWebToken.encode({id: res['id']})
+    res
+  end
 end
