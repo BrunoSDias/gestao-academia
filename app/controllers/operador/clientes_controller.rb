@@ -73,6 +73,6 @@ class Operador::ClientesController < Operador::ApplicationController
     # Only allow a list of trusted parameters through.
     def cliente_params
       params[:cliente][:whatsapp] = params[:cliente][:whatsapp].gsub(/\D/, '')
-      params.require(:cliente).permit(:nome, :whatsapp, pagamento_attributes: [:id, :prazo])
+      params.require(:cliente).permit(:nome, :whatsapp, :email, :password, pagamento_attributes: [:id, :prazo])
     end
 end

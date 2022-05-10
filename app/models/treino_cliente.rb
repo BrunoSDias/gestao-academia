@@ -14,6 +14,28 @@ class TreinoCliente < ApplicationRecord
     sabado: 6,
   }
 
+  def exercicios_em_progresso
+    data_atual = Time.zone.now.beginning_of_day.utc
+
+    AndamentoExercicio
+    .joins(exercicio_treino_cliente: [:treino_cliente, :exercicio])
+    .where(
+      exercicio_treino_clientes: {
+        treino_cliente_id: self.id
+      }
+    )
+    .where("andamento_exercicios.created_at >= ?", data_atual)
+    .reorder("exercicio_treino_clientes.ordem ASC")
+    .distinct
+    .select([
+      "andamento_exercicios.id",
+      "andamento_exercicios.status",
+      "exercicios.nome",
+      "exercicios.descricao",
+      "exercicio_treino_clientes.ordem"
+    ])
+  end
+
   private
 
     def unico_por_cliente!

@@ -4,7 +4,7 @@ class Login::ClientesController < Login::ApplicationController
   def access
     cliente = Cliente.find_by(email: set_cliente_params[:email])
 
-    if cliente
+    if cliente && cliente.password == params[:cliente][:password]
       render json: cliente.encoded, status: :ok
     else
       render json: {}, status: :unauthorized
