@@ -1,0 +1,1 @@
+json.array! @andamento_exercicios, partial: 'cliente/historicos/andamento_exercicio', as: :andamento_exercicio

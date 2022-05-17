@@ -62,8 +62,11 @@ Rails.application.routes.draw do
       end
     end
   end
+
   namespace :cliente do
     get '/show_cliente', to: 'clientes#show'
+    get '/show_historico', to: 'historicos#show'
+    get '/historicos/filter', to: 'historicos#filter'
     resources :clientes, except: :show
     resources :treino_clientes, only: [:index]
     patch '/andamento_exercicios/update_status', to: 'andamento_exercicios#update_status'
