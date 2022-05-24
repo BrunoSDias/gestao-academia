@@ -86,8 +86,9 @@ class Cliente::HistoricosController < Cliente::ApplicationController
         "treinos.nome as nome_treino",
         "andamento_exercicios.created_at"
       ])
-
-      andamento_exercicios.paginate(page: params[:page] || 1, per_page: 5)
+      
+      headers['x-total-count'] = andamento_exercicios.size
+      andamento_exercicios.paginate(page: params[:page] || 1, per_page: params[:per_page] || 10)
     end
 
   def set_cliente

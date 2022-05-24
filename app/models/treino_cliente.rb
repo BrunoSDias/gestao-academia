@@ -14,6 +14,14 @@ class TreinoCliente < ApplicationRecord
     sabado: 6,
   }
 
+  def treinadors
+    Treinador
+      .joins(:treino_treinadors)
+      .where(treino_treinadors: { treino_id: treino_id })
+      .distinct
+      .pluck(:nome)
+  end
+
   def exercicios_em_progresso
     data_atual = Time.zone.now.beginning_of_day.utc
 

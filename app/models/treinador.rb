@@ -1,6 +1,8 @@
 class Treinador < ApplicationRecord
   has_secure_password
 
+  has_many :treino_treinadors
+
   validates :email, uniqueness: true, presence: true
   validates :nome, presence: true
 
