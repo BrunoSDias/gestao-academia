@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+
   root to: "login/home#index"
   namespace :administrador do
     root to: 'home#index'

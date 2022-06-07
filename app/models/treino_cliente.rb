@@ -2,6 +2,8 @@ class TreinoCliente < ApplicationRecord
   belongs_to :cliente
   belongs_to :treino
 
+  has_many :exercicio_treino_clientes, dependent: :destroy
+
   validate :unico_por_cliente!
 
   enum dia_semana: {

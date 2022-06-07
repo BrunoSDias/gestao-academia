@@ -19,6 +19,7 @@ class Cliente < ApplicationRecord
 
   def encoded
     res = self.as_json
+    res['decoded_id'] = res['id']
     res['id'] = JsonWebToken.encode({id: res['id']})
     res
   end
